@@ -136,6 +136,77 @@ class Routes {
     const fromId = (await User.getUserByUsername(from))._id;
     return await Friend.rejectRequest(fromId, user);
   }
+
+  //new 
+  @Router.get("/comments")
+  async getPostComments(author?: ObjectId, postId?: ObjectId) {
+    // let comments;
+    // if (author) {
+    //   const id = (await User.getUserByUsername(author))._id;
+    //   posts = await Post.getByAuthor(id);
+    // } else {
+    //   comments = await Comment.getComments({});
+    // }
+    // return Responses.posts(posts);
+  }
+
+  @Router.post("/comments")
+  async createComment(session: WebSessionDoc, content: string, postId?: ObjectId) {
+    // const user = WebSession.getUser(session);
+    // const created = await Post.create(user, content, options);
+    // return { msg: created.msg, post: await Responses.post(created.post) };
+  }
+
+  @Router.patch("/comments/:_id")
+  async updateComment(session: WebSessionDoc, _id: ObjectId, update: Partial<PostDoc>) {
+    // const user = WebSession.getUser(session);
+    // await Post.isAuthor(user, _id);
+    // return await Post.update(_id, update);
+  }
+
+  @Router.delete("/posts/:_id")
+  async deleteComment(session: WebSessionDoc, _id: ObjectId) {
+    // const user = WebSession.getUser(session);
+    // await Post.isAuthor(user, _id);
+    // return Post.delete(_id);
+  }
+
+  @Router.get("/memories")
+  async getMemory(author?: string, dateToOpen?:Date) {
+    // let posts;
+    // if (author) {
+    //   const id = (await User.getUserByUsername(author))._id;
+    //   posts = await posts.getByAuthor(id);
+    // } else {
+    //   posts = await Post.getPosts({});
+    // }
+    // return Responses.posts(posts);
+  }
+  @Router.get("/memories")
+  async getRandomMemory(author?: string, dateToOpen?:Date ){
+  //   let posts;
+  //   if (author) {
+  //     const id = (await User.getUserByUsername(author))._id;
+  //     posts = await Post.getByAuthor(id);
+  //   } else {
+  //     posts = await Post.getPosts({});
+  //   }
+  //   return Responses.posts(posts);
+  }
+
+  @Router.post("/memories")
+  async makeMemory(session: WebSessionDoc, content: string, dateToOpen?:Date){
+
+  }
+  @Router.patch("/memories/:_id")
+  async updateMemory(session: WebSessionDoc, content: string, dateToOpen?:Date){
+
+  }
+
+  @Router.delete("/memories/:_id")
+  async deleteMemory(session: WebSessionDoc, _id: ObjectId, dateToOpen?:Date) {
+    
+  }
 }
 
 export default getExpressRouter(new Routes());

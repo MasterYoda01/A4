@@ -77,6 +77,91 @@ const operations: operation[] = [
     method: "DELETE",
     fields: { id: "input" },
   },
+  {
+    name: "Get Comments",
+    endpoint: "/api/comments",
+    method: "GET",
+    fields: { post_id: "input"}
+  },
+  {
+    name: "Create Comment",
+    endpoint: "/api/comments/:id",
+    method: "POST",
+    fields: { post_id: "input"}
+  },
+  {
+    name: "Update Comment",
+    endpoint: "/api/comments/:id",
+    method: "PATCH",
+    fields: { post_id: "input", update: { content: "input", options: { backgroundColor: "input" } } },
+  },
+  {
+    name: "Delete Comment",
+    endpoint: "/api/comments/:id",
+    method: "DELETE",
+    fields: { post_id: "input" },
+  },
+  {
+    name: "Get Memory (empty for all)",
+    endpoint: "/api/memories",
+    method: "GET",
+    fields: { author: "input" },
+  },
+  {
+    name: "Get Random Memory (empty for all)",
+    endpoint: "/api/memories",
+    method: "GET",
+    fields: {},
+  },
+  {
+    name: "Create Memory",
+    endpoint: "/api/memories",
+    method: "POST",
+    fields: { content: "input" },
+  },
+  {
+    name: "Update Memory",
+    endpoint: "/api/memories/:id",
+    method: "PATCH",
+    fields: { id: "input", update: { content: "input", options: { backgroundColor: "input" } } },
+  },
+  {
+    name: "Delete Memory",
+    endpoint: "/api/memories/:id",
+    method: "DELETE",
+    fields: { id: "input" },
+  },
+  {
+    name: "Get Reflection (empty for all)",
+    endpoint: "/api/reflections",
+    method: "GET",
+    fields: { author: "input" },
+  },
+  {
+    name: "Get Random Reflection (empty for all)",
+    endpoint: "/api/reflections",
+    method: "GET",
+    fields: { author: "input" },
+  },
+  {
+    name: "Create Reflection",
+    endpoint: "/api/reflections",
+    method: "POST",
+    fields: { content: "input" },
+  },
+  {
+    name: "Update Memory",
+    endpoint: "/api/reflections/:id",
+    method: "PATCH",
+    fields: { id: "input", update: { content: "input", options: { backgroundColor: "input" } } },
+  },
+  {
+    name: "Delete Memory",
+    endpoint: "/api/reflections/:id",
+    method: "DELETE",
+    fields: { id: "input" },
+  }
+  
 ];
 
 // Do not edit below here.
