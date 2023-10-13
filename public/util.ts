@@ -12,7 +12,7 @@ type operation = {
 
 const operations: operation[] = [
   {
-    name: "Get Session User (logged in user)",
+    name: "Get Session User",
     endpoint: "/api/session",
     method: "GET",
     fields: {},
@@ -48,28 +48,75 @@ const operations: operation[] = [
     fields: {},
   },
   {
-    name: "Get Users (empty for all)",
+    name: "Get Users ",
     endpoint: "/api/users/:username",
     method: "GET",
     fields: { username: "input" },
   },
+
   {
-    name: "Get Posts (empty for all)",
+    name: "Get Friends",
+    endpoint: "/api/friend",
+    method: "GET",
+    fields: {},
+  },
+  
+  {
+  name: "Remove Friend",
+  endpoint: "/api/friend",
+  method: "DELETE",
+  fields: {friend: "input"},
+  },
+
+  {
+    name: "Get Friend Request",
+    endpoint: "/api/friend/requests",
+    method: "GET",
+    fields: {},
+  },
+  {
+    name: "Send Friend Request",
+    endpoint: "/api/friend/requests/:to",
+    method: "POST",
+    fields: { to: "input" }
+  },
+  {
+    name: "Remove Friend Request",
+    endpoint: "/api/friend/requests/:to",
+    method: "DELETE",
+    fields: {to: "input"},
+  },
+  {
+    name: "Accept Friend Request ",
+    endpoint: "/friend/accept/:from",
+    method: "GET",
+    fields: { from: "input" },
+  },
+  {
+    name: "Reject Friend Request ",
+    endpoint: "/friend/reject/:from",
+    method: "GET",
+    fields: { from: "input" },
+  },
+
+
+  {
+    name: "Get Posts ",
     endpoint: "/api/posts",
     method: "GET",
     fields: { author: "input" },
   },
   {
-    name: "Create Post",
+    name: "Create Post (Create AI Photo from some prompt(can be empty to post original image) and imageURL).",
     endpoint: "/api/posts",
     method: "POST",
-    fields: { content: "input" },
+    fields: { prompt: "input", inURL: "input" },
   },
   {
     name: "Update Post",
     endpoint: "/api/posts/:id",
     method: "PATCH",
-    fields: { id: "input", update: { content: "input", options: { backgroundColor: "input" } } },
+    fields: { id: "input", update: { prompt: "input", inURL: "input" } },
   },
   {
     name: "Delete Post",
@@ -81,64 +128,60 @@ const operations: operation[] = [
     name: "Get Comments",
     endpoint: "/api/comments",
     method: "GET",
-    fields: { post_id: "input"}
+    fields: { postId: "input"}
   },
   {
     name: "Create Comment",
-    endpoint: "/api/comments/:id",
+    endpoint: "/api/comments/:postId",
     method: "POST",
-    fields: { post_id: "input"}
+    fields: { postId: "input", content: "textarea",}
   },
   {
     name: "Update Comment",
-    endpoint: "/api/comments/:id",
+    endpoint: "/api/comments/:commentId",
     method: "PATCH",
-    fields: { post_id: "input", update: { content: "input", options: { backgroundColor: "input" } } },
+    fields: { commentId: "input", update: { content: "textarea" } },
   },
   {
     name: "Delete Comment",
-    endpoint: "/api/comments/:id",
+    endpoint: "/api/comments/:commentId",
     method: "DELETE",
-    fields: { post_id: "input" },
+    fields: { commentId: "input" },
   },
   {
-    name: "Get Memory (empty for all)",
+    name: "Unlock Memories that're Ready",
     endpoint: "/api/memories",
     method: "GET",
-    fields: { author: "input" },
+    fields: {author: "input"},
   },
+
   {
-    name: "Get Random Memory (empty for all)",
-    endpoint: "/api/memories",
+    name: "Get Random Memory before this Date",
+    endpoint: "/api/memories/:dateRequested",
     method: "GET",
-    fields: {},
+    fields: { author: "input", dateRequested: "input"},
   },
+
   {
     name: "Create Memory",
     endpoint: "/api/memories",
     method: "POST",
-    fields: { content: "input" },
+    fields: { dateToOpen: "input", content: "textarea", url: "input" },
   },
   {
     name: "Update Memory",
-    endpoint: "/api/memories/:id",
+    endpoint: "/api/memories/:memoryId",
     method: "PATCH",
-    fields: { id: "input", update: { content: "input", options: { backgroundColor: "input" } } },
+    fields: { memoryId: "input", update: { dateToOpen: "input", content: "input", url: "input" } }
   },
   {
     name: "Delete Memory",
-    endpoint: "/api/memories/:id",
+    endpoint: "/api/memories/:memoryId",
     method: "DELETE",
-    fields: { id: "input" },
+    fields: { memoryId: "input" },
   },
   {
-    name: "Get Reflection (empty for all)",
-    endpoint: "/api/reflections",
-    method: "GET",
-    fields: { author: "input" },
-  },
-  {
-    name: "Get Random Reflection (empty for all)",
+    name: "Get Reflection",
     endpoint: "/api/reflections",
     method: "GET",
     fields: { author: "input" },
@@ -147,16 +190,16 @@ const operations: operation[] = [
     name: "Create Reflection",
     endpoint: "/api/reflections",
     method: "POST",
-    fields: { content: "input" },
+    fields: { content: "textarea", url: "input" }
   },
   {
-    name: "Update Memory",
+    name: "Update Reflection",
     endpoint: "/api/reflections/:id",
     method: "PATCH",
-    fields: { id: "input", update: { content: "input", options: { backgroundColor: "input" } } },
+    fields: { id: "input", update: { content: "textarea", url: "input" } },
   },
   {
-    name: "Delete Memory",
+    name: "Delete Reflection",
     endpoint: "/api/reflections/:id",
     method: "DELETE",
     fields: { id: "input" },

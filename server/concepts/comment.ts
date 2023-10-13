@@ -4,16 +4,16 @@ import { NotAllowedError, NotFoundError } from "./errors";
 
 export interface CommentDoc extends BaseDoc {
   author: ObjectId;
-  postID: ObjectId;
   content: string;
+  postId: ObjectId;
 
 }
 
 export default class CommentConcept {
   public readonly comments = new DocCollection<CommentDoc>("comments");
 
-  async create(author: ObjectId, postID: ObjectId, content: string) {
-    const _id = await this.comments.createOne({ author, postID, content });
+  async create(author: ObjectId, content: string, postId: ObjectId) {
+    const _id = await this.comments.createOne({ author, content, postId });
     return { msg: "Comment successfully created!", comment: await this.comments.readOne({ _id }) };
   }
 
@@ -24,8 +24,11 @@ export default class CommentConcept {
     return comments;
   }
 
-  async getByAuthor(postID: ObjectId) {
-    return await this.getComments({ postID });
+  async getByPostId(postId: ObjectId) {
+    if (postId===undefined){
+      throw new NotAllowedError("Need a Postid")}
+    else{
+      return await this.getComments({ postId });}
   }
 
   async update(_id: ObjectId, update: Partial<CommentDoc>) { 

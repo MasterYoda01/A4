@@ -1,3 +1,4 @@
+
 import CommentConcept from "./concepts/comment";
 import FriendConcept from "./concepts/friend";
 import MemoryConcept from "./concepts/memory";
@@ -14,4 +15,4 @@ export const Friend = new FriendConcept();
 export const Comment = new CommentConcept();
 export const Memory = new MemoryConcept();
 export const Reflection = new ReflectionConcept();
-// export const AIImageGenerator = new AIImageGeneratorConcept();
+
